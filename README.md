@@ -1,96 +1,120 @@
-# Customer Value Prediction using Iranian Churn Dataset
+# 📊 Customer Value Prediction using Iranian Churn Dataset  
 
-## Introduction
-In this project, we implement statistical learning methods to address a real-world regression problem: customer value prediction using the Iranian Churn dataset. The goal is to predict the customer value for a given customer based on 12 variables. Customer value is a measure of how important a customer is to a company, and predicting this can help businesses maintain long-term relationships with customers and enhance service quality.
+## 🚀 Introduction  
+This project implements statistical and machine learning methods to predict **customer value** using the **Iranian Churn dataset**. Customer value is a measure of a customer's importance to a business, and predicting it can help optimize **customer retention strategies** and **business decisions**.  
 
-## Objective
-The primary objective is to predict the customer value based on the available dataset, which is collected from an Iranian telecom company. The project aims to understand factors influencing customer value, predict customer churn, and optimize business decisions accordingly.
+## 🎯 Objective  
+The primary goal is to predict **customer value** using 12 predictor variables from an Iranian telecom dataset. The project aims to:  
+- Identify key factors influencing customer value.  
+- Predict customer churn based on statistical learning techniques.  
+- Optimize business decisions for better customer retention.  
 
-## Dataset
-The dataset used in this project is the Iranian Churn Dataset, which is available at the UC Irvine Machine Learning Repository. It contains 3,150 observations (each corresponding to a customer) and 14 variables:
+## 📂 Dataset  
+- **Source:** [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/)  
+- **Instances:** 3,150 customers  
+- **Features:** 14 variables, including:  
 
-**Response variable:**
-- Customer Value
+  **Response Variable:**  
+  - **Customer Value** (target variable)  
 
-**Predictor variables:**
-- Call Failures
-- Complaints
-- Subscription Length
-- Charge Amount
-- Seconds of Use
-- Frequency of Use
-- Frequency of SMS
-- Distinct Called Numbers
-- Age Group
-- Tariff Plan
-- Status
-- Age
-- Churn
+  **Predictor Variables:**  
+  - Call Failures  
+  - Complaints  
+  - Subscription Length  
+  - Charge Amount  
+  - Seconds of Use  
+  - Frequency of Use  
+  - Frequency of SMS  
+  - Distinct Called Numbers  
+  - Age Group  
+  - Tariff Plan  
+  - Status  
+  - Age  
+  - Churn  
 
-### Data Insights:
-- Most customers have few call failures.
-- Around 75% have no complaints.
-- The subscription length varies from 3 to 47 months.
-- The charges are predominantly low (mean: 0.94).
-- The median age of customers is 30.
-- Approximately 15.71% of customers have churned.
+### 📊 Data Insights  
+- Most customers have **few call failures**.  
+- **75% of customers** reported no complaints.  
+- Subscription length varies from **3 to 47 months**.  
+- The median customer age is **30 years**.  
+- **15.71% of customers have churned**.  
 
-## Methodology
+## 🔍 Methodology  
 
-### Descriptive Statistics:
-We performed a statistical summary of the dataset to understand the distribution of each variable. We identified high correlations between some variables (e.g., Age and Age Group), which may allow for dimensionality reduction in future modeling.
+### 📈 Exploratory Data Analysis (EDA)  
+- Histograms, box plots, and scatter plots were used to visualize relationships.  
+- **Correlations** were identified between variables (e.g., **Age** and **Age Group**).  
 
-### Exploratory Data Analysis:
-We visualized the relationship between different predictors and customer value through histograms, box plots, and scatter plots. The relationship between customer value and age group was also analyzed.
+### 📊 Model Evaluation  
+- Models were assessed using **Mean Squared Error (MSE)**, **Adjusted R-squared**, **AIC**, **BIC**, and **Cp**.  
 
-### Model Evaluation:
-The models were evaluated using Mean Squared Error (MSE), Adjusted R-squared, and other selection criteria like AIC, BIC, and Cp.
+## 🏆 Results  
 
-## Proposed Solutions
+### 🔹 Linear Models  
+| Model                  | Adjusted R² | Test MSE  |  
+|------------------------|-------------|------------|  
+| **Linear Regression**  | 98.2%       | -          |  
+| **Regression Subsets** | -           | -          |  
 
-### Linear Models:
-A linear regression model achieved an impressive Adjusted R-squared of 98.2%, identifying key predictors like subscription length, service usage time, and frequency of SMS.
+- **Best Subset Model** identified 9 key predictors.  
+- Forward and Backward Selection were used for feature selection.  
 
-### Regression Subsets:
-We explored different combinations of predictors using Adjusted R-squared, BIC, and Cp for subset selection. The best-performing subset of 9 predictors was identified.
+### 🔹 Regularization Models  
+| Model        | Test MSE  |  
+|-------------|----------|  
+| **Ridge Regression**  | 6562.899  |  
+| **Lasso Regression**  | 6563.246  |  
 
-### Forward and Backward Selection:
-Two feature selection methods were used—Forward Selection and Backward Selection—to build more efficient models.
+- **Lasso Regression** helped in feature selection by shrinking some coefficients to zero.  
 
-### Ridge Regression:
-Ridge regression was applied with cross-validation to select an optimal regularization strength. The test set MSE was 6562.899.
+### 🔹 Non-Linear Models  
+| Model                      | Test MSE  |  
+|----------------------------|----------|  
+| **Polynomial Regression**  | -        |  
+| **Generalized Additive Models (GAM)** | **3409.622**  |  
 
-### Lasso Regression:
-Lasso regression applied L1 regularization and achieved a test set MSE of 6563.246, assisting in feature selection.
+- **GAM outperformed polynomial regression**, capturing **non-linear relationships** effectively.  
 
-### Non-linear Models:
-We explored Polynomial Regression and Generalized Additive Models (GAM) to capture non-linear relationships in the data. GAM outperformed polynomial regression with a test MSE of 3409.622.
+### 🔹 Tree-Based Models  
+| Model              | Test MSE  |  
+|--------------------|----------|  
+| **Regression Tree** | 14181.29 |  
+| **Random Forest**  | **1266.552**  |  
 
-### Tree-based Models:
-- **Regression Tree**: The decision tree model showed poor performance with a test MSE of 14181.29.
-- **Random Forest**: The Random Forest model significantly improved performance with a test MSE of 1266.552.
+- **Random Forest significantly improved accuracy**, reducing test MSE.  
 
-### Support Vector Machine (SVM):
-SVM was applied to predict customer value with a radial kernel, achieving a test MSE of 1014.764.
+### 🔹 Support Vector Machine (SVM)  
+- **Radial Kernel SVM achieved a test MSE of 1014.764**.  
 
-### Neural Networks:
-Neural networks were explored with different architectures, and the best model achieved a test MSE of 469.2368.
+### 🔹 Neural Networks  
+| Model              | Test MSE  |  
+|--------------------|----------|  
+| **Best Neural Network Model** | **469.2368** |  
 
-## Discussion
-In comparing all models, neural networks achieved the lowest test MSE, outperforming other methods like Random Forest, SVM, and GAM. The results indicate that more flexible models, such as polynomial regression, GAM, and neural networks, capture the underlying non-linearity of customer value more effectively than simpler models.
+- **Neural networks outperformed all models**, capturing complex patterns in the dataset.  
 
-## Conclusion
-We successfully built a predictive model for customer value using various statistical and machine learning techniques. While neural networks performed the best, Random Forest and SVM models also provided strong performance, suggesting that the relationship between predictors and customer value is complex and non-linear.
+## 📍 Challenges  
+- Handling **high dimensionality** and **feature selection**.  
+- Identifying the **best regularization techniques**.  
+- Balancing **model complexity** with performance.  
 
-## Dependencies
-- `ggplot2`
-- `leaps`
-- `glmnet`
-- `randomForest`
-- `neuralnet`
-- `pls`
+## 🚀 Future Improvements  
+- **Hyperparameter tuning** to further optimize model performance.  
+- **Deep learning techniques** for improved feature extraction.  
+- **Deployment** as a real-time predictive tool for business decision-making.  
 
-## References
-- Awad, M. K. (2015). Support vector regression. In *Efficient learning machines: Theories, concepts, and applications for engineers and system designers*.
-- Iranian Churn Dataset. (n.d.). Retrieved from [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/).
-- James, G. W. (2023). Support Vector Machines. In *An introduction to statistical learning*.
+## ⚙️ Dependencies  
+- `ggplot2`  
+- `leaps`  
+- `glmnet`  
+- `randomForest`  
+- `neuralnet`  
+- `pls`  
+
+## 📖 References  
+- Awad, M. K. (2015). *Support Vector Regression.*  
+- Iranian Churn Dataset. (n.d.). Retrieved from [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/).  
+- James, G. W. (2023). *Support Vector Machines.*  
+
+## 👨‍💻 Author  
+- **Srikanth Banoth**  
